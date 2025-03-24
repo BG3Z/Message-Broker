@@ -116,7 +116,7 @@ public class MensajeProtocolo implements Serializable {
             case XAUTH:
                 if(this.parametro2 == null)
                     return VERDE + this.parametro1 + RESET;
-                return AZUL + "XAUTH con usuario: " + this.parametro1 + " contraseña: " + this.parametro2 + "." + RESET;
+                return AZUL + "XAUTH con usuario: " + this.parametro1 + " password: " + this.parametro2 + "." + RESET;
             case ADDMSG:
                 return AZUL + "ADDMSG con key: " + this.parametro1 + " y valor: " + this.parametro2 + "." + RESET;
             case READQ:

@@ -169,7 +169,8 @@ class Sirviente implements Runnable {
         } else {
             logged = false;
             intentos.evento(socket.getInetAddress().getHostAddress());
-            System.out.println(intentos.getConexiones(socket.getInetAddress().getHostAddress()));
+            System.out.println(ROJO + "Sirviente: "+ns+": Invalid credentials from " +
+                    socket.getInetAddress().getHostAddress());
 
             if(intentos.estaBloqueado(socket.getInetAddress().getHostAddress())) {
                 return new MensajeProtocolo(Primitiva.ERROR, Strings.maxNumFallosAccesos());
@@ -338,6 +339,9 @@ class Sirviente implements Runnable {
     private MensajeProtocolo ejecutar_LISTQ (MensajeProtocolo me) throws MalMensajeProtocoloException{
         String mensaje = "";
         int num_keys = mapa.size();
+        if (num_keys == 0) {
+            return new MensajeProtocolo(Primitiva.EMPTY);
+        }
         int contador = 0;
         for (String key : mapa.keySet()){
                 mensaje += key;
@@ -362,6 +366,9 @@ class Sirviente implements Runnable {
     private MensajeProtocolo ejecutar_LISTQ_CONTENT(MensajeProtocolo me) throws MalMensajeProtocoloException{
         String mensaje = "";
         int num_keys = mapa.size();
+        if (num_keys == 0) {
+            return new MensajeProtocolo(Primitiva.EMPTY);
+        }
         int contador = 0;
         for (String key : mapa.keySet()){
             mensaje += key + ":";

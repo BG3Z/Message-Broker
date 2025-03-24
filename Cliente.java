@@ -64,11 +64,15 @@ public class Cliente {
                                 "READQ, ECHO, PING, FLUSHQ, LISTQ, LISTQ_CONTENT): ");
                         String primitivaInput = br.readLine().toUpperCase();
 
+                        if (primitivaInput.equals("EXIT")){
+                            break;
+                        }
+
                         Primitiva primitiva;
                         try {
                             primitiva = Primitiva.valueOf(primitivaInput); // Intentar convertir el string a una primitiva
                         } catch (IllegalArgumentException e) {
-                            System.err.println(ROJO +"Primitiva no válida. Inténtalo de nuevo."+ RESET);
+                            System.err.println(ROJO +"Primitiva no valida. Intentalo de nuevo."+ RESET);
                             continue;
                         }
 
@@ -77,7 +81,7 @@ public class Cliente {
                                 // Realizar autenticación nuevamente
                                 System.out.print(MAGENTA + "Introduce usuario: " + RESET);
                                 parametro1 = br.readLine();
-                                System.out.print(MAGENTA + "Introduce contraseña: " + RESET);
+                                System.out.print(MAGENTA + "Introduce password: " + RESET);
                                 parametro2 = br.readLine();
                                 pruebaPeticionRespuesta(oos, ois, new MensajeProtocolo(Primitiva.XAUTH, parametro1, parametro2));
                                 break;
@@ -139,13 +143,13 @@ public class Cliente {
             }
 
         } catch (java.io.EOFException e) {
-            System.err.println(ROJO +"Cliente: Fin de conexión."+ RESET);
+            System.err.println(ROJO +"Cliente: Fin de conexion."+ RESET);
         } catch (java.io.IOException e) {
             System.err.println(ROJO +"Cliente: Error de apertura o E/S sobre objetos: "+e+ RESET);
         } catch (MalMensajeProtocoloException e) {
             System.err.println(ROJO +"Cliente: Error mensaje Protocolo: "+e+ RESET);
         } catch (Exception e) {
-            System.err.println(ROJO +"Cliente: Excepción. Cerrando Sockets: "+e+ RESET);
+            System.err.println(ROJO +"Cliente: Excepcion. Cerrando Sockets: "+e+ RESET);
         }
     }
 

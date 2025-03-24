@@ -15,7 +15,7 @@ public class Auth extends ClienteUnitario {
      */
     public static void main(String[] args) throws java.io.IOException {
         if (args.length != 3) {
-            System.out.println("\u001B[33mUso: java sdis.broker.client.unit.Auth host usuario contraseña\u001B[0m");
+            System.out.println("\u001B[33mUso: java sdis.broker.client.unit.Auth host usuario password\u001B[0m");
             System.exit(-1);
         }
 

@@ -1,37 +1,34 @@
 package sdis.broker.client.unit;
 
-import java.io.IOException;
-import java.net.Socket;
 import sdis.broker.common.MensajeProtocolo;
-import sdis.broker.common.MalMensajeProtocoloException;
 import sdis.broker.common.Primitiva;
 
 /**
- * Clase que representa a la primitiva Info
+ * Clase que representa a la primitiva ListQ
  */
-public class Info extends ClienteUnitario {
+public class ListQ extends ClienteUnitario {
+
     /**
-     * Metodo principal que recibe el host del servidor y envía una solicitud de tipo INFO al servidor.
+     * Metodo principal que recibe el parámetro desde la línea de comandos y ejecuta la operación
+     * de consulta del estado del servidor.
      * Si no se pasa el parámetro correcto, el programa terminará y mostrará un mensaje de uso.
      *
      * @param args Los parámetros de la línea de comandos: el {@code host} del servidor.
-     * @throws java.io.IOException Si ocurre un error de entrada/salida al conectarse al servidor o durante la comunicación.
+     * @throws java.io.IOException Si ocurre un error de entrada/salida al ejecutar la operación.
      */
     public static void main(String[] args) throws java.io.IOException {
         if (args.length != 1) {
-            System.out.println("\u001B[33mUso: java sdis.broker.client.unit.INFO host\u001B[0m");
+            System.out.println("\u001B[33mUso: java sdis.broker.client.unit.ListQ host\u001B[0m");
             System.exit(-1);
         }
 
         String host = args[0];
 
         try {
-            ejecutar(host, new MensajeProtocolo(Primitiva.INFO));
+            // ejecuta el metodo ejecutar de cliente unitario para la primitiva State
+            ejecutar(host, new MensajeProtocolo(Primitiva.LISTQ));
         } catch (sdis.broker.common.MalMensajeProtocoloException e) {
             System.err.println("\u001B[31mCliente: Error mensaje Protocolo: " + e + "\u001B[0m");
         }
-
     }
-
 }
-
